@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
+import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -12,11 +13,11 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
 });
 
-let title = "Tweetbio – AI Twitter Bio Generator";
-let description = "Generate your next Twitter bio in seconds";
-let url = "https://www.twitterbio.io/";
-let ogimage = "https://www.twitterbio.io/og-image.png";
-let sitename = "twitterbio.io";
+let title = "AI Roaster - Get Your Website & Profile Savage Roasted";
+let description = "Drop your website URL or bio and let AI brutally roast your pride.";
+let url = "https://roasterai.vercel.app/";
+let ogimage = "https://roasterai.vercel.app/og-image.png";
+let sitename = "roasterai.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -50,12 +51,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
-        <PlausibleProvider domain="twitterbio.io" />
+        <PlausibleProvider domain="roasterai.vercel.app" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
