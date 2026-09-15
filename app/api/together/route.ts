@@ -2,6 +2,10 @@ export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
+    if (!process.env.GROQ_API_KEY) {
+      return new Response(JSON.stringify({ error: "Groq API Key missing in Vercel." }), { status: 500 });
+    }
+
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -21,11 +25,15 @@ export async function POST(req: Request) {
     });
 
     const data = await response.json();
-    const output = data.choices?.[0]?.message?.content || "Roast generation failed. Try again!";
 
-    return new Response(output);
+    if (!response.ok) {
+      return new Response(JSON.stringify({ error: data.error?.message || "Groq API error" }), { status: 500 });
+    }
+
+    const output = data.choices?.[0]?.message?.content || "Could not generate roast.";
+    return new Response(JSON.stringify({ result: output }));
   } catch (error) {
-    return new Response("Error connecting to AI service.");
+    return new Response(JSON.stringify({ error: "Server connection failed." }), { status: 500 });
   }
 }
 
