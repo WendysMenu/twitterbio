@@ -75,7 +75,7 @@ export default function Home() {
           <b>126,657</b> bios generated so far
         </p>
         <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900">
-          Generate your next Twitter bio using AI
+          Get Your Website or Profile Savage Roasted 🔥
         </h1>
         <div className="mt-7">
           <Toggle isGPT={isLlama} setIsGPT={setIsLlama} />
@@ -91,8 +91,8 @@ export default function Home() {
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              Drop in your job{" "}
-              <span className="text-slate-500">(or your favorite hobby)</span>.
+              Drop your website URL, LinkedIn link
+              <span className="text-slate-500">(or Bio text)</span>.
             </p>
           </div>
           <textarea
@@ -100,7 +100,7 @@ export default function Home() {
             onChange={(e) => setBio(e.target.value)}
             rows={4}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
-            placeholder={"e.g. Amazon CEO"}
+            placeholder={"e.g. [https://mywebsite.com](https://mywebsite.com) or paste your bio..."}
           />
           <div className="flex mb-5 items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
@@ -128,7 +128,7 @@ export default function Home() {
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
-              Generate your bio &rarr;
+              Roast Me 🔥;
             </button>
           )}
         </div>
@@ -146,7 +146,7 @@ export default function Home() {
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Your generated bios
+                  Your Savage Roast 🔥
                 </h2>
               </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
