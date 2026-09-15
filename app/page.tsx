@@ -43,11 +43,8 @@ export default function Home() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        prompt,
-        model: isLlama
-          ? "openai/gpt-oss-20b"
-          : "Qwen/Qwen3.5-9B",
-      }),
+  prompt,
+}),
     });
 
     if (!response.ok) {
