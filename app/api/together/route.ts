@@ -1,30 +1,28 @@
-import Together from "together-ai";
-const together = new Together();
-
-if (!process.env.TOGETHER_API_KEY) throw new Error("Missing Together env var");
-
 export async function POST(req: Request) {
-  const { prompt, model } = await req.json();
+  const { prompt } = await req.json();
 
-  const isQwen = model === "Qwen/Qwen3.5-9B";
+  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "llama-3.3-70b-versatile",
+      messages: [
+        {
+          role: "system",
+          content: "You are a savage, hilarious, and sarcastic AI critic. Roast the user's website URL, social profile, or text in 3 brutal yet funny bullet points. End with a 'Savage Score: X/10'."
+        },
+        { role: "user", content: prompt }
+      ],
+    }),
+  });
 
-  const params = {
-    model,
-    messages: [
-  {
-    role: "system",
-    content: "You are a savage, hilarious, and sarcastic AI critic. Roast the user's website URL, social profile, or text in 3 brutal yet funny bullet points. End with a 'Savage Score: X/10'."
-  },
-  { role: "user", content: prompt }
-],
-    temperature: 0.7,
-    max_tokens: isQwen ? 200 : 2000,
-    ...(isQwen && { chat_template_kwargs: { enable_thinking: false } }),
-  } as Parameters<typeof together.chat.completions.stream>[0];
+  const data = await response.json();
+  const output = data.choices[0]?.message?.content || "Could not generate roast.";
 
-  const runner = together.chat.completions.stream(params);
-
-  return new Response(runner.toReadableStream());
+  return new Response(output);
 }
 
 export const runtime = "edge";
