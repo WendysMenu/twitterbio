@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import NativeAd from "@/components/NativeAd";
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -123,6 +124,7 @@ export default function Home() {
               𝕏 Share on Twitter
             </button>
           </div>
+          <NativeAd/>
         </div>
       )}
     </main>
