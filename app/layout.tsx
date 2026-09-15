@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
 import localFont from "next/font/local";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -54,6 +55,12 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
   {children}
+
+  {/* Adsterra Social Bar */}
+  <Script 
+    src="https://pl31351418.profitableratecpmnetwork.com/66/8f/a6/668fa68145ae78660bbdec313a9d0e20.js" 
+    strategy="afterInteractive" 
+  />
 </body>
     </html>
   );
