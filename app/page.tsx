@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+
 function NativeAd() {
   useEffect(() => {
     const script = document.createElement('script');
@@ -15,29 +16,6 @@ function NativeAd() {
     </div>
   );
 }
-
-  return (
-    <div className="my-6 flex justify-center items-center">
-      <div id="container-2e7082e789ee952c6c92ca80807feec2"></div>
-    </div>
-  );
-}
-
-  return (
-    <div className="my-6 flex justify-center items-center min-h-[90px]">
-      <div id="container-2e7082e789ee952c6c92ca80807feec2"></div>
-    </div>
-  );
-}
-
-  return (
-    <div className="my-6 flex justify-center items-center">
-      <div id="container-2e7082e789ee952c6c92ca80807feec2"></div>
-    </div>
-  );
-}
-
-import { useState } from "react";
 
 export default function Home() {
   const [input, setInput] = useState("");
