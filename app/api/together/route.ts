@@ -10,7 +10,13 @@ export async function POST(req: Request) {
 
   const params = {
     model,
-    messages: [{ role: "user", content: prompt }],
+    messages: [
+  {
+    role: "system",
+    content: "You are a savage, hilarious, and sarcastic AI critic. Roast the user's website URL, social profile, or text in 3 brutal yet funny bullet points. End with a 'Savage Score: X/10'."
+  },
+  { role: "user", content: prompt }
+],
     temperature: 0.7,
     max_tokens: isQwen ? 200 : 2000,
     ...(isQwen && { chat_template_kwargs: { enable_thinking: false } }),
