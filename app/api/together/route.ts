@@ -2,14 +2,15 @@ export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
-    if (!process.env.GROQ_API_KEY) {
-      return new Response(JSON.stringify({ error: "Groq API Key missing in Vercel." }), { status: 500 });
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      return new Response(JSON.stringify({ error: "GROQ_API_KEY missing in Vercel." }), { status: 500 });
     }
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
