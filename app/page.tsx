@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 function NativeAd() {
   useEffect(() => {
     const script = document.createElement('script');
